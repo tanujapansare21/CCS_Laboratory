@@ -1,0 +1,83 @@
+Name:Tanuja Anil Pansare
+Roll No:99
+Date:12 April 2025
+Microsoft Windows [Version 10.0.19045.2311]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SAI>cd \xampp\apache\bin
+
+C:\xampp\apache\bin>openssl genrsa -out server.key 2048
+
+C:\xampp\apache\bin>openssl req -new -key server.key -out server.csr
+Can't open "C:\Apache24\conf/openssl.cnf" for reading, No such file or directory
+40180000:error:80000003:system library:BIO_new_file:No such process:crypto\bio\bss_file.c:67:calling fopen(C:\Apache24\conf/openssl.cnf, r)
+40180000:error:10000080:BIO routines:BIO_new_file:no such file:crypto\bio\bss_file.c:75:
+
+C:\xampp\apache\bin>openssl req -new -key server.key -out server.csr -config "C:\xampp\apache\conf\openssl.cnf"
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:IN
+State or Province Name (full name) [Some-State]:Maharashtra
+Locality Name (eg, city) []:Kopargoan
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sanjivani College of Engineering
+Organizational Unit Name (eg, section) []:Information Technology
+Common Name (e.g. server FQDN or YOUR name) []:localhost
+Email Address []:tanujapansare127@gmail.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
+C:\xampp\apache\bin>openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+Certificate request self-signature ok
+subject=C = IN, ST = Maharashtra, L = Kopargoan, O = Sanjivani College of Engineering, OU = Information Technology, CN = localhost, emailAddress = tanujapansare127@gmail.com
+
+C:\xampp\apache\bin>Move server.crt → C:\xampp\apache\conf\ssl.crt\
+The syntax of the command is incorrect.
+
+C:\xampp\apache\bin>move server.crt C:\xampp\apache\conf\ssl.crt\
+Overwrite C:\xampp\apache\conf\ssl.crt\server.crt? (Yes/No/All): Y
+        1 file(s) moved.
+
+C:\xampp\apache\bin>move server.key C:\xampp\apache\conf\ssl.key\
+Overwrite C:\xampp\apache\conf\ssl.key\server.key? (Yes/No/All): Y
+        1 file(s) moved.
+
+C:\xampp\apache\bin>C:\xampp\apache\conf\extra\httpd-ssl.conf
+
+C:\xampp\apache\bin>SSLEngine on
+'SSLEngine' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\apache\bin>SSLCertificateFile "C:/xampp/apache/conf/ssl.crt/server.crt"
+'SSLCertificateFile' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\apache\bin>C:\xampp\apache\conf\extra\httpd-ssl.conf
+
+C:\xampp\apache\bin>SSLCertificateFile "C:/xampp/apache/conf/ssl.crt/server.crt"
+'SSLCertificateFile' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\apache\bin>cd ..
+
+C:\xampp\apache>cd conf
+
+C:\xampp\apache\conf>cd httpd.conf
+The directory name is invalid.
+
+C:\xampp\apache\conf>notepad httpd.conf
+
+C:\xampp\apache\conf>Include conf/extra/httpd-ssl.conf
+'Include' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\apache\conf>cd extra
+
+C:\xampp\apache\conf\extra>
